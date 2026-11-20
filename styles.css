@@ -1,0 +1,308 @@
+/* Andrew Brecht — personal contact page
+   Matte black + metallic gold, to match the metal business card. */
+
+:root {
+  --black: #0b0b0b;
+  --black-soft: #141414;
+  --gold: #c9a24a;
+  --gold-bright: #e0bc6c;
+  --gold-dim: rgba(201, 162, 74, 0.42);
+  --gold-faint: rgba(201, 162, 74, 0.16);
+  --cream: #efe6d4;
+  --cream-dim: #cbbfa6;
+  --ink: #1a150c;
+  --serif: "Cormorant Garamond", "EB Garamond", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  --sans: "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("CormorantGaramond-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("Outfit-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--black);
+  color: var(--cream);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--sans);
+  font-weight: 300;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, #1a1710 0%, var(--black) 58%),
+    var(--black);
+  color: var(--cream);
+}
+
+/* Subtle film grain so the black feels like a matte metal card, not a flat screen. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: max(1.75rem, env(safe-area-inset-top)) 1.4rem max(1.75rem, env(safe-area-inset-bottom));
+}
+
+.mark {
+  width: min(100%, 340px);
+  height: auto;
+  display: block;
+  margin: 0.15rem auto 1.15rem;
+}
+
+.mark img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.portrait {
+  width: 7.75rem;
+  aspect-ratio: 1;
+  margin: 0.15rem auto 1.45rem;
+  padding: 4px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.portrait picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  display: block;
+  background: #161411;
+}
+
+.identity {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 7.3vw, 2.2rem);
+  letter-spacing: 0.13em;
+  line-height: 1.05;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-variation-settings: "wght" 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 340px) {
+  .name {
+    white-space: normal;
+    font-size: clamp(1.85rem, 11vw, 2.2rem);
+    letter-spacing: 0.14em;
+  }
+}
+
+.title {
+  margin-top: 0.62rem;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+.rule {
+  display: block;
+  width: 4.25rem;
+  height: 1px;
+  margin: 1.05rem auto 0;
+  background: var(--gold);
+  opacity: 0.7;
+  border: 0;
+}
+
+.bio {
+  text-align: center;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--cream-dim);
+  max-width: 22.5rem;
+  margin: 0 auto 1.55rem;
+  font-variation-settings: "wght" 400;
+}
+
+.actions {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-faint);
+  color: var(--gold);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: rgba(201, 162, 74, 0.2);
+}
+
+.btn svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: rgba(201, 162, 74, 0.22);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+  outline: none;
+}
+
+.btn:active {
+  background: rgba(201, 162, 74, 0.3);
+}
+
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-top: 0.2rem;
+}
+
+.btn-primary svg {
+  stroke: currentColor;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  color: var(--ink);
+}
+
+.feature {
+  width: 100%;
+  margin-top: 1.65rem;
+}
+
+.feature figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--gold-dim);
+  background: #161411;
+}
+
+.feature picture,
+.feature img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.site-foot {
+  margin-top: 1.55rem;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(203, 191, 166, 0.45);
+}
+
+@media (min-width: 600px) {
+  .page {
+    max-width: 420px;
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .page {
+    max-width: 560px;
+    padding: 3.5rem 1.75rem 3.25rem;
+  }
+
+  .mark {
+    width: min(100%, 440px);
+    margin-bottom: 1.4rem;
+  }
+
+  .portrait {
+    width: 9.5rem;
+    margin-bottom: 1.7rem;
+  }
+}
