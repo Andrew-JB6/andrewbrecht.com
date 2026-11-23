@@ -1,2 +1,2 @@
 # andrewbrecht.com
-Andrew Brecht - personal contact site
+Andrew Brecht — personal site
